@@ -15,8 +15,9 @@ defmodule BlogPhoenix.Comment do
   @doc """
   Builds a changeset based on the `struct` and `params`.
   """
-  def changeset(model, params \\ :empty) do
-    model
-    |> cast(params, @required_fields, @optional_fields)
+  def changeset(struct, params \\ %{}) do
+    struct
+    |> cast(params, [:name, :content, :post_id])
+    |> validate_required([:name, :content, :post_id])
   end
 end
